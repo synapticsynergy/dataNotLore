@@ -11,7 +11,7 @@ def main(url, search_term):
     # print(r.content)
 
     soup = BeautifulSoup(r.content, "html5lib")
-    # print(soup)
+    print(soup)
 
     quotes = []  # a list to store quotes
 
