@@ -1,4 +1,4 @@
 pytest
 requests
 html5lib
-bs4
+selenium
