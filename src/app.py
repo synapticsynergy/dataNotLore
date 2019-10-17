@@ -21,12 +21,17 @@ def main():
     with open(annotations_csv, "r") as file:
         csv_rows = file.readlines()
         for row in csv_rows:
-            cells = row.split(",")
-            annotation = cells[0]
-            search_terms = cells[1:]
-            search_terms[-1] = search_terms[-1].strip(" \t\n\r")
+            annotation, search_terms = get_search_inputs(row)
             print(annotation, search_terms)
             request_search_terms(annotation, search_terms)
+
+
+def get_search_inputs(row):
+    cells = row.split(",")
+    annotation = cells[0]
+    search_terms = cells[1:]
+    search_terms[-1] = search_terms[-1].strip(" \t\n\r")
+    return annotation, search_terms
 
 
 def request_search_terms(annotation, search_terms):
