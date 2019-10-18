@@ -38,10 +38,13 @@ def request_search_terms(annotation, search_terms):
     """
     Pass in the annotation and search terms, and get a list of image urls in csv with the annotation in the filename.
     """
-    csv_filename = annotation.replace(" ", "_")
-    output_dir = os.path.join("/".join(root_path), "data", f"{csv_filename}.csv")
-    if os.path.exists(output_dir):
-        os.remove(output_dir)
+    annotation = annotation.replace(" ", "_")
+    output_dir = os.path.join("/".join(root_path), "data", annotation)
+    output_file_path = os.path.join("/".join(root_path), "data", annotation, f"{annotation}.csv")
+    if not os.path.exists(output_file_path):
+        os.mkdir(output_dir)
+    if os.path.exists(output_file_path):
+        os.remove(output_file_path)
     for search_term in search_terms:
         trimmed_search_term = search_term.strip(" \t\n\r")
         print(f"Searching: {trimmed_search_term}")
@@ -51,7 +54,7 @@ def request_search_terms(annotation, search_terms):
         browser.get(url)
         search_button = browser.find_element_by_xpath("//button[@aria-label='Google Search']")
         search_button.click()
-        get_image_urls(annotation, browser, output_dir, csv_filename)
+        get_image_urls(annotation, browser, output_file_path, annotation)
 
 
 def get_image_urls(annotation, browser, output_dir, csv_filename):
