@@ -2,6 +2,7 @@
 import csv
 import sys
 import os
+from sys import platform
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -23,6 +24,11 @@ def main():
             annotation, search_terms = get_search_inputs(row)
             print(annotation, search_terms)
             request_search_terms(annotation, search_terms)
+
+
+def get_os_platform():
+    os_driver_dir = {"linux": "linux", "linux2": "linux", "darwin": "mac"}
+    return os_driver_dir[platform]
 
 
 def get_search_inputs(row):
@@ -48,7 +54,7 @@ def request_search_terms(annotation, search_terms):
         trimmed_search_term = search_term.strip(" \t\n\r")
         print(f"Searching: {trimmed_search_term}")
         url = f"https://www.google.com/imghp?q={trimmed_search_term}"
-        chromedriver_path = os.path.join("/".join(root_path), "bin", "chromedriver")
+        chromedriver_path = os.path.join("/".join(root_path), "bin", get_os_platform(), "chromedriver")
         browser = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=option)
         browser.get(url)
         search_button = browser.find_element_by_xpath("//button[@aria-label='Google Search']")
