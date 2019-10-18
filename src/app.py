@@ -1,5 +1,4 @@
 # Python program to scrape website
-import requests
 import csv
 import sys
 import os
@@ -41,7 +40,7 @@ def request_search_terms(annotation, search_terms):
     annotation = annotation.replace(" ", "_")
     output_dir = os.path.join("/".join(root_path), "data", annotation)
     output_file_path = os.path.join("/".join(root_path), "data", annotation, f"{annotation}.csv")
-    if not os.path.exists(output_file_path):
+    if not os.path.exists(output_dir):
         os.mkdir(output_dir)
     if os.path.exists(output_file_path):
         os.remove(output_file_path)
