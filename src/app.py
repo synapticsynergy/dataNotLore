@@ -44,9 +44,9 @@ def request_search_terms(annotation, search_terms):
     Pass in the annotation and search terms, and get a list of image urls in csv with the annotation in the filename.
     """
     annotation = annotation.replace(" ", "_")
-    data_dir = os.path.join("/".join(root_path), "data")
-    output_dir = os.path.join("/".join(root_path), "data", annotation)
-    output_file_path = os.path.join("/".join(root_path), "data", annotation, f"{annotation}.csv")
+    data_dir = os.path.join("/".join(root_path), "data_csv")
+    output_dir = os.path.join("/".join(root_path), "data_csv", annotation)
+    output_file_path = os.path.join("/".join(root_path), "data_csv", annotation, f"{annotation}.csv")
     if not os.path.exists(data_dir):
         os.mkdir(data_dir)
     if not os.path.exists(output_dir):
