@@ -2,20 +2,22 @@ import os
 
 file_path = os.path.dirname(os.path.abspath(__file__))
 root_path = "/".join(file_path.split("/")[0:-1])
-data_path = os.path.join(root_path, "data")
+data_path = os.path.join(root_path, "data_csv")
 data_preview_path = os.path.join(root_path, "data_preview")
 
 
 def data_preview():
-    for filename in os.listdir(data_path):
-        create_html(filename)
+    for label in os.listdir(data_path):
+        create_html(label)
 
 
-def create_html(csv):
-    file_out_path = os.path.join(data_preview_path, f"{csv}.html")
+def create_html(label):
+    file_out_path = os.path.join(data_preview_path, f"{label}.html")
+    if not os.path.exists(data_preview_path):
+        os.mkdir(data_preview_path)
     if os.path.exists(file_out_path):
         os.remove(file_out_path)
-    with open(os.path.join(data_path, csv), "r") as file_in:
+    with open(os.path.join(data_path, label, f"{label}.csv"), "r") as file_in:
         csv_rows = file_in.readlines()
         for row in csv_rows:
             print(f"<div><img src='{row}'></div>")
