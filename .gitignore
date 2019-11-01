@@ -124,6 +124,7 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
-# csv files
+# data files
 data_csv/*
 data_preview/*
+data/*
