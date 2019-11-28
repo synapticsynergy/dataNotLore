@@ -34,9 +34,21 @@ def get_os_platform():
 def get_search_inputs(row):
     cells = row.split(",")
     annotation = cells[0]
+    if len(cells) is 1 or cells[1] is ''.strip(" \t\n\r"):
+        cleaned_annotation, cleaned_search_terms = clean_text(annotation, [annotation])
+        return cleaned_annotation, cleaned_search_terms
     search_terms = cells[1:]
-    search_terms[-1] = search_terms[-1].strip(" \t\n\r")
-    return annotation, search_terms
+    cleaned_annotation, cleaned_search_terms = clean_text(annotation, search_terms)
+    return cleaned_annotation, cleaned_search_terms
+
+
+def clean_text(annotation, row):
+    cleaned_annotation = annotation.strip(" \t\n\r")
+    print(len(cleaned_annotation))
+    print(len('ash tree'))
+    mapped_search_terms = map(lambda x:x.strip(" \t\n\r"), row)
+    cleaned_search_terms = [term for term in mapped_search_terms if term]
+    return cleaned_annotation, cleaned_search_terms
 
 
 def request_search_terms(annotation, search_terms):
