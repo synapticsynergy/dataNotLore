@@ -34,7 +34,7 @@ def get_os_platform():
 def get_search_inputs(row):
     cells = row.split(",")
     annotation = cells[0]
-    if len(cells) is 1 or cells[1] is ''.strip(" \t\n\r"):
+    if len(cells) is 1 or cells[1] is ''.strip(" \u200e\t\n\r"):
         cleaned_annotation, cleaned_search_terms = clean_text(annotation, [annotation])
         return cleaned_annotation, cleaned_search_terms
     search_terms = cells[1:]
@@ -43,10 +43,10 @@ def get_search_inputs(row):
 
 
 def clean_text(annotation, row):
-    cleaned_annotation = annotation.strip(" \t\n\r")
+    cleaned_annotation = annotation.strip(" \u200e\t\n\r")
     print(len(cleaned_annotation))
     print(len('ash tree'))
-    mapped_search_terms = map(lambda x:x.strip(" \t\n\r"), row)
+    mapped_search_terms = map(lambda x:x.strip(" \u200e\t\n\r"), row)
     cleaned_search_terms = [term for term in mapped_search_terms if term]
     return cleaned_annotation, cleaned_search_terms
 
@@ -66,7 +66,7 @@ def request_search_terms(annotation, search_terms):
     if os.path.exists(output_file_path):
         os.remove(output_file_path)
     for search_term in search_terms:
-        trimmed_search_term = search_term.strip(" \t\n\r")
+        trimmed_search_term = search_term.strip(" \u200e\t\n\r")
         print(f"Searching: {trimmed_search_term}")
         url = f"https://www.google.com/imghp?q={trimmed_search_term}"
         chromedriver_path = os.path.join("/".join(root_path), "bin", get_os_platform(), "chromedriver")
