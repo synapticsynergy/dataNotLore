@@ -12,8 +12,6 @@ pip install -r requirements.txt
 
 This section relates to the `single_label_scraper.py` script.
 
-### Steps for creating an annotation csv file to be consumed by the single_label_scraper.py script
-
 ## Create a csv file within the src/annotations directory
 
 You can label this anything you want. I like to label the csv files the same name as the experiment that I want to run within jupyter notebook.
