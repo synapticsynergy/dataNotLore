@@ -126,6 +126,7 @@ def get_image_urls(browser, num_images):
             try:
                 search_button.click()
                 browser.implicitly_wait(5)
+                sleep(5)
             except Exception:
                 print('Probably reached end of results')
                 pass
@@ -140,8 +141,8 @@ def get_image_urls(browser, num_images):
     return urls
 
 
-# if __name__ == "__main__":
-    # scrape_images(num_images=200)
+if __name__ == "__main__":
+    scrape_images(num_images=500)
     # annotation = "ash tree"
     # request_search_terms(
     #     annotation, ["ash tree fall", "ash tree winter", "ash tree spring", "ash tree summer"]
