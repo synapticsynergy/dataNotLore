@@ -136,7 +136,7 @@ def get_image_urls(browser, num_images):
         "urls = Array.from(document.querySelectorAll('.rg_di .rg_meta')).map(el=>JSON.parse(el.textContent).ou); return urls;"
     )
     browser.implicitly_wait(5)
-    print(len(urls),'length at end')
+    print(len(urls), 'length at end')
     sleep(5)
     return urls
 
