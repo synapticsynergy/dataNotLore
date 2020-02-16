@@ -1,5 +1,5 @@
-# Instructions For Dataset Annotations
-Intended to be used by a virtual assistant.
+# Instructions For Dataset Annotations. Single-label Classification
+Intended to be quickly edited and used by a virtual assistant.
 
 # Getting Started:
 
